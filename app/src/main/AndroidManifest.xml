@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yoenas.githubusers">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/app_logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/app_logo_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GitHubUsers"
+        tools:ignore="DataExtractionRules">
+        <activity
+            android:name="com.yoenas.githubusers.ui.splashscreen.SplashScreenActivity"
+            android:exported="true"
+            android:theme="@style/Theme.GitHubUsers.SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.yoenas.githubusers.ui.detail.DetailActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.yoenas.githubusers.ui.MainActivity"
+            android:exported="true"
+            android:theme="@style/NoActionBar"/>
+    </application>
+
+</manifest>
