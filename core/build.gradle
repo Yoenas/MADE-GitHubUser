@@ -16,8 +16,8 @@ android {
         minSdk 23
         targetSdk 32
 
-        buildConfigField("String","API_KEY","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")
-        buildConfigField("String","BASE_URL","https://api.github.com/")
+        buildConfigField("String","API_KEY",GitHubApiKey)
+        buildConfigField("String","BASE_URL",GitHubBaseUrl)
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
