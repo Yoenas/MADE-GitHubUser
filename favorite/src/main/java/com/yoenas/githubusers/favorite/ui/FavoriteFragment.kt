@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.yoenas.githubusers.core.domain.model.User
 import com.yoenas.githubusers.core.ui.UserAdapter
+import com.yoenas.githubusers.core.utils.ExtensionFunctions.setupActionBar
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 import com.yoenas.githubusers.di.FavoriteModuleDependencies
 import com.yoenas.githubusers.favorite.DaggerFavoriteComponent
@@ -19,7 +20,6 @@ import com.yoenas.githubusers.favorite.R
 import com.yoenas.githubusers.favorite.ViewModelFactory
 import com.yoenas.githubusers.favorite.databinding.FragmentFavoriteBinding
 import com.yoenas.githubusers.ui.detail.DetailActivity
-import com.yoenas.githubusers.utils.ExtensionFunctions.setupActionBar
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.yoenas.githubusers.utils
+package com.yoenas.githubusers.core.utils
 
 import com.yoenas.githubusers.core.domain.model.User
 

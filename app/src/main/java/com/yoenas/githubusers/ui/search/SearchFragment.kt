@@ -16,10 +16,10 @@ import com.yoenas.githubusers.R
 import com.yoenas.githubusers.core.data.Resource
 import com.yoenas.githubusers.core.domain.model.User
 import com.yoenas.githubusers.core.ui.UserAdapter
+import com.yoenas.githubusers.core.utils.ExtensionFunctions.setupActionBar
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 import com.yoenas.githubusers.databinding.FragmentSearchBinding
 import com.yoenas.githubusers.ui.detail.DetailActivity
-import com.yoenas.githubusers.utils.ExtensionFunctions.setupActionBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -104,7 +104,8 @@ class SearchFragment : Fragment() {
                 val uri = Uri.parse("githubusers://settings")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
-            R.id.action_favorite -> findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
+            R.id.action_favorite ->
+                findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
         }
         return super.onOptionsItemSelected(item)
     }

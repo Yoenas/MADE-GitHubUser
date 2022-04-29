@@ -2,7 +2,7 @@
 <resources>
     <string name="title_favorite">Favorite</string>
 
-    <string name="txt_dialog_information_favorite">No user is the Favorite.\n\nGo to Detail GitHub User Page,\nuse the love button to add users here.</string>
+    <string name="txt_dialog_information_favorite">No user is the Favorite.\n\nGo to Detail GitHub User page,\nuse the love button to add users here.</string>
     <string name="txt_search_progress">Please wait! Looking For</string>
     <string name="txt_type_the_username">Type the Username</string>
 
