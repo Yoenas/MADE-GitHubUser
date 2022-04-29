@@ -1,6 +1,6 @@
 package com.yoenas.githubusers.core.data
 
-import com.yoenas.githubusers.core.data.local.RoomDataSource
+import com.yoenas.githubusers.core.data.local.LocalDataSource
 import com.yoenas.githubusers.core.data.remote.RemoteDataSource
 import com.yoenas.githubusers.core.data.remote.network.ApiResponse
 import com.yoenas.githubusers.core.data.remote.response.UserResponse
@@ -14,7 +14,7 @@ import javax.inject.Singleton
 
 @Singleton
 class UserRepository @Inject constructor(
-    private val roomDataSource: RoomDataSource,
+    private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) : IUserRepository {
 
@@ -67,19 +67,19 @@ class UserRepository @Inject constructor(
     }
 
     override suspend fun insert(user: User) =
-        roomDataSource.insert(DataMapper.mapDomainToEntity(user))
+        localDataSource.insert(DataMapper.mapDomainToEntity(user))
 
     override fun getFavoriteUsers(): Flow<List<User>> {
-        return roomDataSource.getFavoriteUsers().map {
+        return localDataSource.getFavoriteUsers().map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
 
     override suspend fun delete(user: User) =
-        roomDataSource.delete(DataMapper.mapDomainToEntity(user))
+        localDataSource.delete(DataMapper.mapDomainToEntity(user))
 
     override fun getSearchUserFromDB(query: String): Flow<List<User>> {
-        return roomDataSource.getSearchUserFromDB(query).map {
+        return localDataSource.getSearchUserFromDB(query).map {
             DataMapper.mapEntitiesToDomain(it)
         }
     }
