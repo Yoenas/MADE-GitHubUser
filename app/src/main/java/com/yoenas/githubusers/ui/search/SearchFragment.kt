@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -54,6 +55,7 @@ class SearchFragment : Fragment() {
                 }
                 is Resource.Error -> {
                     Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+                    Log.e("SearchFragment", "Error retrofit2 :\n${it.message}")
                     showLoading(false)
                     binding.tvDialogInformation.visibility = View.VISIBLE
                     binding.imgDialogInformation.visibility = View.VISIBLE
