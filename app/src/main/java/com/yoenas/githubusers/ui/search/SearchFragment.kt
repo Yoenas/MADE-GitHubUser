@@ -42,7 +42,7 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        binding.toolbarSearch.setupActionBar(this, null)
+        binding.toolbarSearch.setupActionBar(this)
 
         val userAdapter = UserAdapter()
         searchViewModel.getSearchUser().observe(viewLifecycleOwner) {
@@ -91,8 +91,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchUserByQuery(newText)
-                return true
+                return false
             }
         })
 

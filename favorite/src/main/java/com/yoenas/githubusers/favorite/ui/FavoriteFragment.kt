@@ -61,7 +61,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        binding.toolbarFavorite.setupActionBar(this, com.yoenas.githubusers.R.id.favoriteFragment)
+        binding.toolbarFavorite.setupActionBar(this)
 
         favoriteViewModel.getFavoriteUsers().observe(viewLifecycleOwner) {
             binding.apply {
