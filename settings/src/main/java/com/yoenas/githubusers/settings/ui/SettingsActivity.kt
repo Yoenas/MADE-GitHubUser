@@ -54,4 +54,9 @@ class SettingsActivity : AppCompatActivity() {
             settingsViewModel.saveThemeSetting(!isChecked)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }

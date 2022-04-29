@@ -159,6 +159,11 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     companion object {
         const val EXTRA_DATA_USERNAME = "username"
     }
