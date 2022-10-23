@@ -23,6 +23,13 @@ class SplashScreenActivity : AppCompatActivity() {
                         return run {
                             // The content is ready; start drawing.
                             content.viewTreeObserver.removeOnPreDrawListener(this)
+                            content.context.startActivity(
+                                Intent(
+                                    this@SplashScreenActivity,
+                                    MainActivity::class.java
+                                )
+                            )
+                            finish()
                             true
                         }
                     }

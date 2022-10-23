@@ -15,6 +15,7 @@ import com.yoenas.githubusers.adapter.FollowPagerAdapter
 import com.yoenas.githubusers.core.data.Resource
 import com.yoenas.githubusers.core.domain.model.User
 import com.yoenas.githubusers.databinding.ActivityDetailBinding
+import com.yoenas.navigation.KeyName
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,8 +41,8 @@ class DetailActivity : AppCompatActivity() {
             title = getString(R.string.txt_title_detail)
         }
 
-        val username = intent.getStringExtra(EXTRA_DATA_USERNAME)
-        saveDataUser.putString(EXTRA_DATA_USERNAME, username)
+        val username = intent.getStringExtra(KeyName.DATA_USERNAME)
+        saveDataUser.putString(KeyName.DATA_USERNAME, username)
 
         username?.let { query ->
             detailViewModel.getUserDetails(query).observe(this) {
@@ -162,9 +163,5 @@ class DetailActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    companion object {
-        const val EXTRA_DATA_USERNAME = "username"
     }
 }

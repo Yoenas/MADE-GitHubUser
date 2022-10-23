@@ -20,6 +20,9 @@ import com.yoenas.githubusers.favorite.R
 import com.yoenas.githubusers.favorite.ViewModelFactory
 import com.yoenas.githubusers.favorite.databinding.FragmentFavoriteBinding
 import com.yoenas.githubusers.ui.detail.DetailActivity
+import com.yoenas.navigation.ActivityName
+import com.yoenas.navigation.KeyName
+import com.yoenas.navigation.intentTo
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 
@@ -86,9 +89,8 @@ class FavoriteFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 2)
             favoriteUsersAdapter.setOnItemClickCallback(object : OnItemClickCallback {
                 override fun onItemClicked(userResponse: User) {
-                    val intent = Intent(context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA_USERNAME, userResponse.login)
-                    startActivity(intent)
+                    val detail = ActivityName.DETAIL
+                    context.intentTo(detail, KeyName.DATA_USERNAME, userResponse.login)
                 }
             })
             adapter = favoriteUsersAdapter

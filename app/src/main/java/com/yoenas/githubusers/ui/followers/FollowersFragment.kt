@@ -11,6 +11,7 @@ import com.yoenas.githubusers.core.data.Resource
 import com.yoenas.githubusers.core.ui.UserAdapter
 import com.yoenas.githubusers.databinding.FragmentFollowersBinding
 import com.yoenas.githubusers.ui.detail.DetailActivity
+import com.yoenas.navigation.KeyName
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +34,7 @@ class FollowersFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         showLoading(true)
-        val username = arguments?.getString(DetailActivity.EXTRA_DATA_USERNAME).toString()
+        val username = arguments?.getString(KeyName.DATA_USERNAME).toString()
 
         val userAdapter = UserAdapter()
         followersViewModel.getResultFollowers(username).observe(viewLifecycleOwner) {

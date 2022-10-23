@@ -9,7 +9,7 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         minSdk 23
@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation project(":app")
     implementation project(":core")
+    implementation project(":navigation")
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }

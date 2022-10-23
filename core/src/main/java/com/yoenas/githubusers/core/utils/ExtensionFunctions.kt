@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 
 object ExtensionFunctions {
+
     fun MaterialToolbar.setupActionBar(fragment: Fragment) {
 
         val navController = findNavController()

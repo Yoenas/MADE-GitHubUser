@@ -20,7 +20,9 @@ import com.yoenas.githubusers.core.ui.UserAdapter
 import com.yoenas.githubusers.core.utils.ExtensionFunctions.setupActionBar
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 import com.yoenas.githubusers.databinding.FragmentSearchBinding
-import com.yoenas.githubusers.ui.detail.DetailActivity
+import com.yoenas.navigation.ActivityName
+import com.yoenas.navigation.KeyName
+import com.yoenas.navigation.intentTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,31 +48,31 @@ class SearchFragment : Fragment() {
         binding.toolbarSearch.setupActionBar(this)
 
         val userAdapter = UserAdapter()
-        searchViewModel.getSearchUser().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> showLoading(true)
-                is Resource.Success -> {
-                    userAdapter.setData(it.data)
-                    showLoading(false)
-                }
-                is Resource.Error -> {
-                    Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
-                    Log.e("SearchFragment", "Error retrofit2 :\n${it.message}")
-                    showLoading(false)
-                    binding.tvDialogInformation.visibility = View.VISIBLE
-                    binding.imgDialogInformation.visibility = View.VISIBLE
-                    binding.rvUser.visibility = View.GONE
+
+        searchViewModel.getSearchUser().observe(viewLifecycleOwner) { list ->
+                when (list) {
+                    is Resource.Loading -> showLoading(true)
+                    is Resource.Success -> {
+                        userAdapter.setData(list.data)
+                        showLoading(false)
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(context, "Error ${list.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("SearchFragment", "Error retrofit2 :\n${list.message}")
+                        showLoading(false)
+                        binding.tvDialogInformation.visibility = View.VISIBLE
+                        binding.imgDialogInformation.visibility = View.VISIBLE
+                        binding.rvUser.visibility = View.GONE
+                    }
                 }
             }
-        }
 
         binding.rvUser.apply {
             layoutManager = GridLayoutManager(context, 2)
             userAdapter.setOnItemClickCallback(object : OnItemClickCallback {
                 override fun onItemClicked(userResponse: User) {
-                    val intent = Intent(context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA_USERNAME, userResponse.login)
-                    startActivity(intent)
+                    val detail = ActivityName.DETAIL
+                    context.intentTo(detail, KeyName.DATA_USERNAME, userResponse.login)
                 }
             })
             adapter = userAdapter
