@@ -7,7 +7,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class RoomDataSource @Inject constructor(private val favoriteDao: FavoriteDao) {
+class LocalDataSource @Inject constructor(private val favoriteDao: FavoriteDao) {
     suspend fun insert(userEntity: UserEntity) = favoriteDao.insert(userEntity)
 
     fun getFavoriteUsers(): Flow<List<UserEntity>> = favoriteDao.getFavorites()

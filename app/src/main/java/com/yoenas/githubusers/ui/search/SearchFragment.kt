@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -16,10 +17,12 @@ import com.yoenas.githubusers.R
 import com.yoenas.githubusers.core.data.Resource
 import com.yoenas.githubusers.core.domain.model.User
 import com.yoenas.githubusers.core.ui.UserAdapter
+import com.yoenas.githubusers.core.utils.ExtensionFunctions.setupActionBar
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 import com.yoenas.githubusers.databinding.FragmentSearchBinding
-import com.yoenas.githubusers.ui.detail.DetailActivity
-import com.yoenas.githubusers.utils.ExtensionFunctions.setupActionBar
+import com.yoenas.navigation.ActivityName
+import com.yoenas.navigation.KeyName
+import com.yoenas.navigation.intentTo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,33 +45,34 @@ class SearchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        binding.toolbarSearch.setupActionBar(this, null)
+        binding.toolbarSearch.setupActionBar(this)
 
         val userAdapter = UserAdapter()
+
         searchViewModel.getSearchUser().observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> showLoading(true)
-                is Resource.Success -> {
-                    userAdapter.setData(it.data)
-                    showLoading(false)
-                }
-                is Resource.Error -> {
-                    Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
-                    showLoading(false)
-                    binding.tvDialogInformation.visibility = View.VISIBLE
-                    binding.imgDialogInformation.visibility = View.VISIBLE
-                    binding.rvUser.visibility = View.GONE
+                when (it) {
+                    is Resource.Loading -> showLoading(true)
+                    is Resource.Success -> {
+                        userAdapter.setData(it.data)
+                        showLoading(false)
+                    }
+                    is Resource.Error -> {
+                        Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("SearchFragment", "Error retrofit2 :\n${it.message}")
+                        showLoading(false)
+                        binding.tvDialogInformation.visibility = View.VISIBLE
+                        binding.imgDialogInformation.visibility = View.VISIBLE
+                        binding.rvUser.visibility = View.GONE
+                    }
                 }
             }
-        }
 
         binding.rvUser.apply {
             layoutManager = GridLayoutManager(context, 2)
             userAdapter.setOnItemClickCallback(object : OnItemClickCallback {
                 override fun onItemClicked(userResponse: User) {
-                    val intent = Intent(context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA_USERNAME, userResponse.login)
-                    startActivity(intent)
+                    val detail = ActivityName.DETAIL
+                    context.intentTo(detail, KeyName.DATA_USERNAME, userResponse.login)
                 }
             })
             adapter = userAdapter
@@ -91,8 +95,7 @@ class SearchFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchUserByQuery(newText)
-                return true
+                return false
             }
         })
 
@@ -105,7 +108,8 @@ class SearchFragment : Fragment() {
                 val uri = Uri.parse("githubusers://settings")
                 startActivity(Intent(Intent.ACTION_VIEW, uri))
             }
-            R.id.action_favorite -> findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
+            R.id.action_favorite ->
+                findNavController().navigate(R.id.action_searchFragment_to_favoriteFragment)
         }
         return super.onOptionsItemSelected(item)
     }

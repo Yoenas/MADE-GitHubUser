@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -7,6 +6,7 @@
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/github_logo_white.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/ic_broken_image_dark.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/ic_github_logo_white.xml" value="0.1" />
+        <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/ic_left.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/ic_left_arrow.xml" value="0.1285" />
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/logo.xml" value="0.1125" />
         <entry key="..\:/AndroidStudioProjects/practice/DicodingMade/GitHubUsers/app/src/main/res/drawable/splash_screen.xml" value="0.1165" />
@@ -34,7 +34,7 @@
       <item index="2" class="java.lang.String" itemvalue="dagger.Module" />
     </list>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="jbr-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.yoenas.githubusers.core.R
 import com.yoenas.githubusers.core.databinding.RowItemUserBinding
 import com.yoenas.githubusers.core.domain.model.User
-import com.yoenas.githubusers.core.utils.DiffCallback
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 
 class UserAdapter : RecyclerView.Adapter<UserAdapter.MyViewHolder>() {

@@ -1,4 +1,4 @@
-package com.yoenas.githubusers.core.utils
+package com.yoenas.githubusers.core.ui
 
 import androidx.recyclerview.widget.DiffUtil
 import com.yoenas.githubusers.core.domain.model.User

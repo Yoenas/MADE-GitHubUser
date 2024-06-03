@@ -9,12 +9,12 @@ plugins {
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.yoenas.githubusers"
         minSdk 23
-        targetSdk 31
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -22,8 +22,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,11 +42,16 @@ android {
         viewBinding true
     }
     dynamicFeatures = [':settings', ':favorite']
+    namespace 'com.yoenas.githubusers'
 }
 
 dependencies {
     implementation project(":core")
+    implementation project(":navigation")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    implementation "androidx.core:core-splashscreen:1.0.1"
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 }

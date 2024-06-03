@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.yoenas.githubusers.core.domain.model.User
 import com.yoenas.githubusers.core.ui.UserAdapter
+import com.yoenas.githubusers.core.utils.ExtensionFunctions.setupActionBar
 import com.yoenas.githubusers.core.utils.OnItemClickCallback
 import com.yoenas.githubusers.di.FavoriteModuleDependencies
 import com.yoenas.githubusers.favorite.DaggerFavoriteComponent
@@ -19,7 +20,9 @@ import com.yoenas.githubusers.favorite.R
 import com.yoenas.githubusers.favorite.ViewModelFactory
 import com.yoenas.githubusers.favorite.databinding.FragmentFavoriteBinding
 import com.yoenas.githubusers.ui.detail.DetailActivity
-import com.yoenas.githubusers.utils.ExtensionFunctions.setupActionBar
+import com.yoenas.navigation.ActivityName
+import com.yoenas.navigation.KeyName
+import com.yoenas.navigation.intentTo
 import dagger.hilt.android.EntryPointAccessors
 import javax.inject.Inject
 
@@ -61,7 +64,7 @@ class FavoriteFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setHasOptionsMenu(true)
-        binding.toolbarFavorite.setupActionBar(this, com.yoenas.githubusers.R.id.favoriteFragment)
+        binding.toolbarFavorite.setupActionBar(this)
 
         favoriteViewModel.getFavoriteUsers().observe(viewLifecycleOwner) {
             binding.apply {
@@ -86,9 +89,8 @@ class FavoriteFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 2)
             favoriteUsersAdapter.setOnItemClickCallback(object : OnItemClickCallback {
                 override fun onItemClicked(userResponse: User) {
-                    val intent = Intent(context, DetailActivity::class.java)
-                    intent.putExtra(DetailActivity.EXTRA_DATA_USERNAME, userResponse.login)
-                    startActivity(intent)
+                    val detail = ActivityName.DETAIL
+                    context.intentTo(detail, KeyName.DATA_USERNAME, userResponse.login)
                 }
             })
             adapter = favoriteUsersAdapter
