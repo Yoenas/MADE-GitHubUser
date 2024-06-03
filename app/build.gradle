@@ -42,6 +42,7 @@ android {
         viewBinding true
     }
     dynamicFeatures = [':settings', ':favorite']
+    namespace 'com.yoenas.githubusers'
 }
 
 dependencies {
@@ -49,6 +50,8 @@ dependencies {
     implementation project(":navigation")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation "androidx.core:core-splashscreen:1.0.1"
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 }

@@ -1,7 +1,9 @@
 package com.yoenas.githubusers.core.data.remote.response
 
+import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
 
+@Keep
 data class UserResponse(
     @field:SerializedName("login")
     val login: String,

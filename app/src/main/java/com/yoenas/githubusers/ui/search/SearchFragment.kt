@@ -49,16 +49,16 @@ class SearchFragment : Fragment() {
 
         val userAdapter = UserAdapter()
 
-        searchViewModel.getSearchUser().observe(viewLifecycleOwner) { list ->
-                when (list) {
+        searchViewModel.getSearchUser().observe(viewLifecycleOwner) {
+                when (it) {
                     is Resource.Loading -> showLoading(true)
                     is Resource.Success -> {
-                        userAdapter.setData(list.data)
+                        userAdapter.setData(it.data)
                         showLoading(false)
                     }
                     is Resource.Error -> {
-                        Toast.makeText(context, "Error ${list.message}", Toast.LENGTH_SHORT).show()
-                        Log.e("SearchFragment", "Error retrofit2 :\n${list.message}")
+                        Toast.makeText(context, "Error ${it.message}", Toast.LENGTH_SHORT).show()
+                        Log.e("SearchFragment", "Error retrofit2 :\n${it.message}")
                         showLoading(false)
                         binding.tvDialogInformation.visibility = View.VISIBLE
                         binding.imgDialogInformation.visibility = View.VISIBLE
